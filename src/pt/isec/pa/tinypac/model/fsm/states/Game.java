@@ -22,22 +22,9 @@ public class Game extends GameStateAdapter {
     @Override
     public void startGame(){
         GameEngine gameEngine = new GameEngine();
-        registerClients(gameEngine);
         gameEngine.start(500);
 
     }
 
-    public void registerClients(GameEngine gameEngine){      // instance clients and register
-        TinyPac pac = new TinyPac(UP);
-        gameEngine.registerClient(pac);
-        Blinky blinky = new Blinky(LEFT);
-        gameEngine.registerClient(blinky);
-        Clyde clyde = new Clyde(RIGHT);
-        gameEngine.registerClient(clyde);
-        Inky inky = new Inky(DOWN);
-        gameEngine.registerClient(inky);
-        Pinky pinky = new Pinky(UP);
-        gameEngine.registerClient(pinky);
 
-    }
 }

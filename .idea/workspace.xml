@@ -5,34 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4a6a346-e42a-4507-8288-77a67f8182e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Level01.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/Ball.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/Element.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/Fruit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PacSpawn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PhantomCave.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PhantomPortal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PowerBall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/Wall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/Warp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameStateAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/IGameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Top5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/Blinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Blinky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/Clyde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Clyde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/Inky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Inky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/Pinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Pinky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/Characters/TinyPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/TinyPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/GameEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/utils/PAInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/utils/PAInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/GameGhosts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/InvertGhosts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Lose.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Pause.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Win.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Game.java" afterDir="false" />
     </list>
     <list id="8e035914-3015-4493-b065-bc118c0d9af8" name="Changes by guilhermerodrigues" comment="" />
     <option name="SHOW_DIALOG" value="false" />

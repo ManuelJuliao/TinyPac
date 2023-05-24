@@ -1,4 +1,4 @@
-package gamebw.Utils;
+package pt.isec.pa.tinypac.utils;
 
 import java.util.Scanner;
 
@@ -76,6 +76,10 @@ public final class PAInput {
             sc.nextLine();
         } while (option < 1 || option > options.length);
         return option;
+    }
+
+    public static void anyInput(){
+        sc.nextLine();
     }
 
 }

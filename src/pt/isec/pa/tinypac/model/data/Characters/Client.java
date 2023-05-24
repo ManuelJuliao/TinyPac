@@ -1,6 +1,5 @@
-package pt.isec.pa.tinypac.gameengine.Characters;
+package pt.isec.pa.tinypac.model.data.Characters;
 
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 
@@ -8,7 +7,7 @@ import pt.isec.pa.tinypac.model.data.IMazeElement;
 
 public abstract class Client implements IGameEngineEvolve, IMazeElement {
     private Direction direction;
-    private char symbol;
+    private final char symbol;
     public enum Direction {UP, DOWN, LEFT, RIGHT}
 
 

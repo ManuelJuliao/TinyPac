@@ -1,7 +1,6 @@
-package pt.isec.pa.tinypac.gameengine.Characters;
+package pt.isec.pa.tinypac.model.data.Characters;
 
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
-import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 
 public class TinyPac extends Client {
 

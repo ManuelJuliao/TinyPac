@@ -1,23 +1,16 @@
 package pt.isec.pa.tinypac.gameengine;
 
-import pt.isec.pa.tinypac.model.data.IMazeElement;
-import pt.isec.pa.tinypac.model.data.Maze;
-
 import java.util.HashSet;
 import java.util.Set;
 public final class GameEngine implements IGameEngine {
     private GameEngineState state;
     private GameEngineThread controlThread;
     private Set<IGameEngineEvolve> clients;
-    private Maze maze;
-    private boolean fruitMaze[][];
     System.Logger logger;
 
     public GameEngine() {
         logger = System.getLogger("GameEngine");
         clients = new HashSet<>();
-        maze = new Maze(20,20);
-        this.fruitMaze = new boolean[maze.getMaze().length][maze.getMaze()[0].length];
         setState(GameEngineState.READY);
     }
 
@@ -86,31 +79,6 @@ public final class GameEngine implements IGameEngine {
         } catch (InterruptedException e) {}
     }
 
-    //Maze commands
-    public void setMazeElement(int y, int x,IMazeElement element) {
-        maze.set(y, x, element);
-    }
-
-    public IMazeElement getMazeElement(int y, int x) {
-        return maze.get(y, x);
-    }
-
-    public char[][] getMaze() {
-        return maze.getMaze();
-    }
-
-    //Fruit maze commands
-    public void eatFruit(int y, int x) {
-        fruitMaze[y][x] = false;
-    }
-
-    public boolean getFruit(int y, int x) {
-        return fruitMaze[y][x];
-    }
-
-    public boolean[][] getFruitMaze() {
-        return fruitMaze;
-    }
 
     //Game engine thread
     private class GameEngineThread extends Thread {

@@ -1,19 +1,25 @@
 package pt.isec.pa.tinypac.model.data.Characters;
 
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.model.data.Board;
 
-public class Inky extends Client{
+public class Inky extends Generic {
 
-    public Inky(Direction direction){
-        super(direction, 'I');
+    public static final char SYMBOL = 'I';
+
+    public Inky(Board board){
+
+        super(board);
+    }
+
+
+    @Override
+    public void evolve() {
+
     }
 
     @Override
-    public void evolve(IGameEngine gameEngine, long currentTime) {
-        // goes bottom right corner
-        // goes bottom left corner
-        // goes top left corner
-        // goes top right corner
-        // threshold 10-15%, if lower changes corner
+    public char getSymbol() {
+        return SYMBOL;
     }
+
 }

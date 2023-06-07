@@ -1,17 +1,23 @@
 package pt.isec.pa.tinypac.model.data.Characters;
 
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.model.data.Board;
 
-public class Clyde extends Client{
+public class Clyde extends Generic {
 
-    public Clyde(Direction direction){
-        super(direction, 'C');
+    public static final char SYMBOL = 'C';
+
+    public Clyde(Board board){
+        super(board);
     }
 
     @Override
-    public void evolve(IGameEngine gameEngine, long currentTime) {
-        // go straight
-        // random direction when it finds wall
-        // hunts pac if in line of sight
+    public void evolve() {
+
     }
+
+    @Override
+    public char getSymbol() {
+        return SYMBOL;
+    }
+
 }

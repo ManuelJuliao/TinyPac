@@ -1,19 +1,22 @@
 package pt.isec.pa.tinypac.model.data.Characters;
 
-import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.model.data.Board;
 
-public class Pinky extends Client{
+public class Pinky extends Generic {
 
-    public Pinky(Direction direction){
-        super(direction, 'P');
+    public static final char SYMBOL = 'P';
+
+    public Pinky(Board board){
+
+        super(board);
+    }
+
+
+    @Override
+    public void evolve() {
+
     }
 
     @Override
-    public void evolve(IGameEngine gameEngine, long currentTime) {
-        // goes top right corner
-        // goes bottom right corner
-        // goes bottom left corner
-        // goes top left corner
-        // threshold 10-15%, if lower changes corner
-    }
+    public char getSymbol() { return SYMBOL;}
 }

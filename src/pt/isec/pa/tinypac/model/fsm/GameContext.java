@@ -1,24 +1,23 @@
 package pt.isec.pa.tinypac.model.fsm;
 
+import pt.isec.pa.tinypac.model.BoardManager;
+import pt.isec.pa.tinypac.model.data.Board;
 import pt.isec.pa.tinypac.model.data.Maze;
+import pt.isec.pa.tinypac.model.fsm.states.Game;
 
 
-public class GameContext {
+public class GameContext{
 
-    private IGameState state;
-    private Maze maze;
+     IGameState state;
+     Board board;
 
     public GameContext() {
-        maze = new Maze(31,29);
-
-        state = GameState.createState(GameState.MENU,this,maze);
+        state = GameState.createState(GameState.GAME, this, board);
     }
 
-    public void start(){
-        state.start();
-    }
 
     public void startGame(){
+
         state.startGame();
     }
 

@@ -1,20 +1,20 @@
 package pt.isec.pa.tinypac.model.fsm;
 
+import pt.isec.pa.tinypac.model.BoardManager;
+import pt.isec.pa.tinypac.model.data.Board;
 import pt.isec.pa.tinypac.model.data.Maze;
 
 public abstract class GameStateAdapter implements IGameState {
 
     protected GameContext context;
-    protected Maze maze;
+    protected Board board;
 
-    protected GameStateAdapter(GameContext context, Maze maze){
+
+    protected GameStateAdapter(GameContext context, Board board){
         this.context = context;
-        this.maze = maze;
+        this.board = board;
     }
 
-    public void start(){
-
-    }
 
     @Override
     public void startGame() {
@@ -22,6 +22,8 @@ public abstract class GameStateAdapter implements IGameState {
     }
 
     protected void changeState(GameState newState) {
-        context.changeState(GameState.createState(newState,context,maze));
+        context.changeState(GameState.createState(newState,context,board));
     }
+
+
 }

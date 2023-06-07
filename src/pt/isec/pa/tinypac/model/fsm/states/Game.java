@@ -1,17 +1,17 @@
 package pt.isec.pa.tinypac.model.fsm.states;
 
 import pt.isec.pa.tinypac.gameengine.GameEngine;
-import pt.isec.pa.tinypac.model.data.Characters.*;
+import pt.isec.pa.tinypac.model.BoardManager;
+import pt.isec.pa.tinypac.model.data.Board;
 import pt.isec.pa.tinypac.model.data.Maze;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.GameState;
 import pt.isec.pa.tinypac.model.fsm.GameStateAdapter;
 
-import static pt.isec.pa.tinypac.model.data.Characters.Client.Direction.*;
-
 public class Game extends GameStateAdapter {
-    public Game(GameContext context, Maze maze) {
-        super(context,maze);
+    System.Logger logger;
+    public Game(GameContext context, Board board) {
+        super(context,board);
     }
 
     @Override
@@ -21,10 +21,17 @@ public class Game extends GameStateAdapter {
 
     @Override
     public void startGame(){
-        GameEngine gameEngine = new GameEngine();
-        gameEngine.start(500);
+        //GameEngine gameEngine = new GameEngine();
+        //gameEngine.registerClient(manager);
+        //gameEngine.registerClient(ui);
+        //gameEngine.start(500);
+        changeState(GameState.GAME);
+        //logger.log(System.Logger.Level.INFO,state.toString());
+
 
     }
+
+
 
 
 }

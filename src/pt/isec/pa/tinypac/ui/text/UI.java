@@ -1,44 +1,49 @@
 package pt.isec.pa.tinypac.ui.text;
 
+import pt.isec.pa.tinypac.Main;
+import pt.isec.pa.tinypac.gameengine.IGameEngine;
+import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
+import pt.isec.pa.tinypac.model.BoardManager;
+import pt.isec.pa.tinypac.model.data.Board;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.utils.PAInput;
 
-public class UI {
-    GameContext fsm;
+public class UI implements IGameEngineEvolve {
 
-    public UI(GameContext fsm) {
-        this.fsm = fsm;
+    BoardManager manager;
+
+    public UI() {
+
+        this.manager = Main.gameManager;
+        menu();
     }
 
     private boolean finish = false;
-    public void start() {
-        while(!finish) {
-            if (fsm.getState() == null) System.exit(-1); // TODO: remove!
-            switch (fsm.getState()) {
-                case MENU -> menu();
-                case GAME -> game();
-                case TOP_5 -> top5();
-                default -> finish = true;
-            }
-        }
-    }
 
-    private void top5() {
-    }
 
-    private void game() {
-    }
+
 
     private void menu() {
+        char[][] board1 = manager.getBoard();
+        manager.printBoard(board1);
+        System.out.println();
         switch (PAInput.chooseOption("TinyPac DEIS-ISEC-IPC",
                 "Start Game", "Top 5" , "Sair")) {
             case 1:
-                fsm.start();
-                System.out.println("Game ready, press to continue");
-                PAInput.anyInput();
-                fsm.startGame();
+                manager.startGame();
+                //game();
             case 2, 3:
                 finish = true;
         }
+    }
+
+    private void game() {
+        // todo
+    }
+
+    @Override
+    public void evolve(IGameEngine gameEngine, long currentTime) {
+            char[][] board1 = manager.getBoard();
+            manager.printBoard(board1);
     }
 }

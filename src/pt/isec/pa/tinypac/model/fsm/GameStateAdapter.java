@@ -17,9 +17,22 @@ public abstract class GameStateAdapter implements IGameState {
 
 
     @Override
-    public void startGame() {
+    public void startGame() {}
 
-    }
+    @Override
+    public void powerUp() {}
+
+    @Override
+    public void powerDown() {}
+
+    @Override
+    public void win() {}
+    @Override
+    public void lose() {}
+    @Override
+    public void pause() {}
+
+
 
     protected void changeState(GameState newState) {
         context.changeState(GameState.createState(newState,context,board));

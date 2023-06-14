@@ -1,5 +1,6 @@
 package pt.isec.pa.tinypac.model;
 
+import pt.isec.pa.tinypac.gameengine.GameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Board;
@@ -7,6 +8,8 @@ import pt.isec.pa.tinypac.model.data.Characters.*;
 import pt.isec.pa.tinypac.model.data.Elements.*;
 import pt.isec.pa.tinypac.model.data.IMazeElement;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
+import pt.isec.pa.tinypac.model.fsm.GameState;
+import pt.isec.pa.tinypac.model.fsm.states.Game;
 import pt.isec.pa.tinypac.utils.Utils;
 
 import java.io.*;
@@ -15,17 +18,27 @@ import java.io.*;
 
 public class BoardManager implements IGameEngineEvolve {
 
+
+
+
     private Board board;
     private GameContext fsm;
+
+
+    int counter = 0;
+    boolean flag = false;
 
     private int x,y;
 
     public BoardManager(){
+
         fsm = new GameContext();
-        checkSize();
-        board = new Board(y,x);
-        fillBoard(board, y, x);
-        fillCharacters();
+        innitGame();
+
+    }
+
+    private void innitGame(){
+        board = new Board();
 
     }
 
@@ -35,41 +48,30 @@ public class BoardManager implements IGameEngineEvolve {
     }
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
-        if (!board.evolve())
-            gameEngine.stop();
+        if(board.POWER_UP && !flag){
+            fsm.activatePower();
+            flag = true;
+        }
+        if(flag && counter++ >= 20) {
+            board.POWER_UP = false;
+            fsm.deactivatePower();
+            counter = 0;
+            flag = false;
+        }
+
+        if (fsm.getState() == GameState.GAME_GHOSTS){
+            if (!board.evolve())
+                gameEngine.stop();
+        }
+        else if (fsm.getState() == GameState.INVERT_GHOSTS){
+            if (!board.evolveInvert())
+                gameEngine.stop();
+        }
+
+
     }
 
-    private void checkSize(){
-        File file = new File("Level01.txt");
-        int rows=0, columns=0;
 
-        try {
-
-            FileReader fr=new FileReader(file);   //Creation of File Reader object
-            BufferedReader br=new BufferedReader(fr);  //Creation of BufferedReader object
-            int c;
-            while((c = br.read()) != -1)         //Read char by Char
-            {
-                char character = (char) c;          //converting integer to char
-                if(character == '\r')
-                    continue;
-                if (character == '\n') {
-                    x = columns;
-                    columns = 0;
-                    rows++;
-                    continue;
-                }
-                columns++;
-            }
-            y = rows + 1;
-
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private void fillBoard(Board board, int y0, int x0) {
         File file = new File("Level01.txt");
@@ -145,9 +147,9 @@ public class BoardManager implements IGameEngineEvolve {
     private Generic selectPhantom(int count, IMazeElement spawn ){
         return switch (count){
             case 0 -> new Blinky(board, spawn);
-            case 1 -> new Clyde( board);
-            case 2 -> new Inky(board);
-            case 3 -> new Pinky(board);
+            case 1 -> new Clyde( board, spawn);
+            case 2 -> new Inky(board,spawn);
+            case 3 -> new Pinky(board, spawn);
             default -> throw new IllegalStateException("Unexpected value: " + count);
         };
     }
@@ -158,7 +160,8 @@ public class BoardManager implements IGameEngineEvolve {
             case 'x' -> new Wall();
             case 'W' -> new Warp();
             case 'o' -> new Ball();
-            case 'F' -> new Fruit();
+           // case 'F' -> new Fruit();
+            case 'F' -> null;
             case 'Y' -> new PhantomPortal();
             case 'y' -> new PhantomCave();
             case 'M' -> new PacSpawn();
@@ -174,6 +177,10 @@ public class BoardManager implements IGameEngineEvolve {
             }
             System.out.println();
         }
+    }
+
+    public void changeDirection(Generic.Direction dir){
+        board.tinyPac.setDirection(dir);
     }
 
     public char[][] getBoard() {

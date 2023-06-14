@@ -15,4 +15,24 @@ public class GameGhosts extends GameStateAdapter {
     public GameState getState() {
         return GameState.GAME_GHOSTS;
     }
+
+    @Override
+    public void powerUp(){
+        changeState(GameState.INVERT_GHOSTS);
+    }
+
+    @Override
+    public void win() {
+        changeState(GameState.WIN);
+    }
+
+    @Override
+    public void lose() {
+        changeState(GameState.LOSE);
+    }
+
+    @Override
+    public void pause() {
+        changeState(GameState.PAUSE);
+    }
 }

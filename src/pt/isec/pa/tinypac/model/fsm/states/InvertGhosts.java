@@ -16,4 +16,20 @@ public class InvertGhosts extends GameStateAdapter {
     public GameState getState() {
         return GameState.INVERT_GHOSTS;
     }
+
+    @Override
+    public void powerDown(){
+        changeState(GameState.GAME_GHOSTS);
+    }
+
+    @Override
+    public void win() {
+        changeState(GameState.WIN);
+    }
+
+    @Override
+    public void pause() {
+        changeState(GameState.PAUSE);
+    }
+
 }

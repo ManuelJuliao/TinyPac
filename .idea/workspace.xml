@@ -4,31 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4a6a346-e42a-4507-8288-77a67f8182e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/BoardManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/utils/Utils.java" afterDir="false" />
+    <list default="true" id="e4a6a346-e42a-4507-8288-77a67f8182e2" name="Changes" comment="Blinky moving, evolve working, changes to characters, getempty cells renewed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/gameengine/IGameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/BoardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/BoardManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Blinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Blinky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Generic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Clyde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Clyde.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Generic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Generic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Inky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Inky.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Pinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Pinky.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/TinyPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/TinyPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PacSpawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Elements/PacSpawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameStateAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/GameStateAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/IGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/IGameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/GameGhosts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/GameGhosts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/InvertGhosts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/InvertGhosts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Lose.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Lose.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Menu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Pause.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Top5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Win.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/fsm/states/Win.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pa/tinypac/ui/text/UI.java" afterDir="false" />
     </list>
     <list id="8e035914-3015-4493-b065-bc118c0d9af8" name="Changes by guilhermerodrigues" comment="" />
@@ -101,6 +95,14 @@
       <option name="presentableId" value="Default" />
       <updated>1681915735615</updated>
     </task>
+    <task id="LOCAL-00001" summary="Blinky moving, evolve working, changes to characters, getempty cells renewed">
+      <created>1686152297614</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686152297614</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -116,13 +118,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Blinky moving, evolve working, changes to characters, getempty cells renewed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Blinky moving, evolve working, changes to characters, getempty cells renewed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/BoardManager.java</url>
-          <line>169</line>
+          <line>172</line>
           <properties class="pt.isec.pa.tinypac.model.BoardManager" method="printBoard">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -131,7 +135,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Board.java</url>
-          <line>75</line>
+          <line>239</line>
           <properties class="pt.isec.pa.tinypac.model.data.Board">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -144,13 +148,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Blinky.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/pt/isec/pa/tinypac/model/data/Characters/Blinky.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="14" />
+          <line>52</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

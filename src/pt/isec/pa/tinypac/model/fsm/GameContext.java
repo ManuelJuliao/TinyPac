@@ -9,6 +9,8 @@ import pt.isec.pa.tinypac.model.fsm.states.Game;
 public class GameContext{
 
      IGameState state;
+
+     IGameState pauseState;
      Board board;
 
     public GameContext() {
@@ -19,6 +21,14 @@ public class GameContext{
     public void startGame(){
 
         state.startGame();
+    }
+
+    public void activatePower(){
+        state.powerUp();
+    }
+
+    public void deactivatePower(){
+        state.powerDown();
     }
 
     public GameState getState() {

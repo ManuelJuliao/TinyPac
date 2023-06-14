@@ -6,6 +6,8 @@ import pt.isec.pa.tinypac.model.fsm.GameState;
 import pt.isec.pa.tinypac.model.fsm.GameStateAdapter;
 
 public class Pause extends GameStateAdapter {
+
+
     public Pause(GameContext context, Board board) {
         super(context, board);
     }
@@ -14,4 +16,12 @@ public class Pause extends GameStateAdapter {
     public GameState getState() {
         return GameState.PAUSE;
     }
+
+
+    @Override
+    public void pause() {
+        changeState(GameState.PAUSE);
+    }
+
+
 }

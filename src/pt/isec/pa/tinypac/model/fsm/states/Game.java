@@ -21,14 +21,7 @@ public class Game extends GameStateAdapter {
 
     @Override
     public void startGame(){
-        //GameEngine gameEngine = new GameEngine();
-        //gameEngine.registerClient(manager);
-        //gameEngine.registerClient(ui);
-        //gameEngine.start(500);
-        changeState(GameState.GAME);
-        //logger.log(System.Logger.Level.INFO,state.toString());
-
-
+        changeState(GameState.GAME_GHOSTS);
     }
 
 

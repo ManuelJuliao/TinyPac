@@ -15,8 +15,9 @@ public class Main {
     public static void main(String[] args) {
 
         //GameContext gameContext = new GameContext();
-        gameManager = new BoardManager();
         GameEngine gameEngine = new GameEngine();
+        gameManager = new BoardManager();
+
         UI ui = new UI();
         gameEngine.registerClient(gameManager);
         gameEngine.registerClient(ui);

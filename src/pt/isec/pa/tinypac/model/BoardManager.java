@@ -5,171 +5,115 @@ import pt.isec.pa.tinypac.gameengine.IGameEngine;
 import pt.isec.pa.tinypac.gameengine.IGameEngineEvolve;
 import pt.isec.pa.tinypac.model.data.Board;
 import pt.isec.pa.tinypac.model.data.Characters.*;
-import pt.isec.pa.tinypac.model.data.Elements.*;
-import pt.isec.pa.tinypac.model.data.IMazeElement;
+import pt.isec.pa.tinypac.model.data.PlayerScore;
 import pt.isec.pa.tinypac.model.fsm.GameContext;
 import pt.isec.pa.tinypac.model.fsm.GameState;
-import pt.isec.pa.tinypac.model.fsm.states.Game;
-import pt.isec.pa.tinypac.utils.Utils;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.List;
 
-import java.io.*;
-
-
-
+/**
+ * This class represents the BoardManager
+ */
 public class BoardManager implements IGameEngineEvolve {
-
-
-
-
     private Board board;
     private GameContext fsm;
-
-
+    PropertyChangeSupport pcs;
+    public static GameEngine gameEngine;
     int counter = 0;
     boolean flag = false;
 
-    private int x,y;
-
+    /**
+     * Constructs a BoardManager object
+     */
     public BoardManager(){
-
+        gameEngine = new GameEngine();
+        gameEngine.registerClient(this);
         fsm = new GameContext();
+        pcs = new PropertyChangeSupport(this);
         innitGame();
-
     }
 
+    /**
+     * Adds PropertyChangeListener given the listener
+     * @param listener listener to add
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    /**
+     * Initializes the board
+     */
     private void innitGame(){
         board = new Board();
-
     }
 
-
+    /**
+     * Initializes the game
+     */
     public void startGame(){
+        board.innit();
         fsm.startGame();
+        startEngine();
+        pcs.firePropertyChange(null,null,null);
     }
+
+    /**
+     * Starts the game engine
+     */
+    private void startEngine() {
+        gameEngine.start(500);
+        //gameEngine.waitForTheEnd();
+    }
+
+    /**
+     * Ends game and stops the game engine
+     */
+    public void end() {
+        fsm.end();
+        gameEngine.stop();
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    /**
+     * Method responsible for the evolution of the BoardManager
+     * @param gameEngine is the game engine
+     * @param currentTime is the machine current time
+     */
     @Override
     public void evolve(IGameEngine gameEngine, long currentTime) {
-        if(board.POWER_UP && !flag){
-            fsm.activatePower();
-            flag = true;
-        }
-        if(flag && counter++ >= 20) {
-            board.POWER_UP = false;
-            fsm.deactivatePower();
-            counter = 0;
-            flag = false;
-        }
-
-        if (fsm.getState() == GameState.GAME_GHOSTS){
-            if (!board.evolve())
-                gameEngine.stop();
-        }
-        else if (fsm.getState() == GameState.INVERT_GHOSTS){
-            if (!board.evolveInvert())
-                gameEngine.stop();
-        }
-
-
-    }
-
-
-
-    private void fillBoard(Board board, int y0, int x0) {
-        File file = new File("Level01.txt");
-        int k=0;
-        //String text = null;
-        char[] text = new char[y0*x0];
-        Element aux;
-
-        try {
-
-            FileReader fr=new FileReader(file);   //Creation of File Reader object
-            BufferedReader br=new BufferedReader(fr);  //Creation of BufferedReader object
-            int c = 0;
-            int j = 0;
-            while((c = br.read()) != -1)         //Read char by Char
-            {
-                char character = (char) c;          //converting integer to char
-                if(character == '\r')
-                    continue;
-                if (character == '\n')
-                    continue;
-                text[j] = character;
-                j++;
+        if(board.getHP()==0)
+            die();
+        else if(board.getMapBalls() == board.getBallCountTotal())
+            win();
+        else{
+            if(board.POWER_UP && !flag){
+                fsm.activatePower();
+                flag = true;
             }
-            //System.out.println(text);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        for (int y1 = 0; y1 < y; y1++){
-            for (int x1 = 0; x1 < x; x1++){
-                aux = selectElement(text[k]);
-                board.addElement(aux,y1,x1);
-                k++;
+            if(flag && counter++ >= 20) {
+                board.POWER_UP = false;
+                fsm.deactivatePower();
+                counter = 0;
+                flag = false;
             }
-
-
-        }
-
-    }
-
-    private void fillCharacters() {
-        int countCave = 0, countRand = 0, countPhantom = 0;
-        IMazeElement spawn = null;
-        char[][] aux = board.getBoard();
-        for (int y0 = 0; y0 < aux.length; y0++){
-            for (int x0 = 0; x0 < aux[y0].length; x0++){
-                if(aux[y0][x0] == 'M')
-                    board.addCharacter(new TinyPac(board), y0,x0 );
-                if (aux[y0][x0] == 'Y'){
-                    spawn = board.get(y0,x0);
-                }
-                else if(aux[y0][x0]== 'y'){
-                    countCave++;
-                    if(21 - countCave >= 4 - countRand){
-                        if(countPhantom == 4)
-                            break;
-                        if(Utils.randBool()){
-                            board.addCharacter(selectPhantom(countPhantom, spawn), y0,x0);
-                            countPhantom++;
-                        }
-
-                    }
-                }
-
+            if (fsm.getState() == GameState.GAME_GHOSTS){
+                if (!board.evolve())
+                    gameEngine.stop();
+            }
+            else if (fsm.getState() == GameState.INVERT_GHOSTS){
+                if (!board.evolveInvert())
+                    gameEngine.stop();
             }
         }
+        pcs.firePropertyChange(null,null,null);
     }
 
-    private Generic selectPhantom(int count, IMazeElement spawn ){
-        return switch (count){
-            case 0 -> new Blinky(board, spawn);
-            case 1 -> new Clyde( board, spawn);
-            case 2 -> new Inky(board,spawn);
-            case 3 -> new Pinky(board, spawn);
-            default -> throw new IllegalStateException("Unexpected value: " + count);
-        };
-    }
-
-
-    Element selectElement(char c){
-        return switch(c){
-            case 'x' -> new Wall();
-            case 'W' -> new Warp();
-            case 'o' -> new Ball();
-           // case 'F' -> new Fruit();
-            case 'F' -> null;
-            case 'Y' -> new PhantomPortal();
-            case 'y' -> new PhantomCave();
-            case 'M' -> new PacSpawn();
-            case 'O' -> new PowerBall();
-            default -> null;
-        };
-    }
-
+    /**
+     * Prints the board to the console
+     * @param board game map
+     */
     public void printBoard(char[][] board){ //test
         for (int y0 = 0; y0 < board.length; y0++){
             for (int x0 = 0; x0 < board[y0].length; x0++){
@@ -179,11 +123,105 @@ public class BoardManager implements IGameEngineEvolve {
         }
     }
 
+    /**
+     * Change TinyPac direction given the new direction
+     * @param dir new direction
+     */
     public void changeDirection(Generic.Direction dir){
         board.tinyPac.setDirection(dir);
     }
 
+    /**
+     * Returns board in char[][] format
+     * @return board
+     */
     public char[][] getBoard() {
         return board.getBoard();
+    }
+
+    /**
+     * Returns state
+     * @return state
+     */
+    public GameState getState() {
+        return fsm.getState();
+    }
+
+    /**
+     * Returns points
+     * @return points
+     */
+    public int getPoints(){
+        return board.getPoints();
+    }
+
+    /**
+     * Returns hp
+     * @return hp
+     */
+    public int getHP() { return board.getHP(); }
+
+    /**
+     * Pauses game and pauses game engine
+     */
+    public void pause() {
+        fsm.saveState();
+        fsm.pause();
+        gameEngine.pause();
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    /**
+     * Resumes game and resumes game engine
+     */
+    public void resume(){
+        fsm.resume();
+        gameEngine.resume();
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    /**
+     * Kills TinyPac and stops game engine
+     */
+    public void die(){
+        fsm.die();
+        gameEngine.stop();
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    /**
+     * Win game and stops game engine
+     */
+    private void win() {
+        fsm.win();
+        gameEngine.stop();
+        pcs.firePropertyChange(null,null,null);
+    }
+
+    /**
+     * Check if points enter the top 5
+     * @return true or false
+     */
+    public boolean top5(){
+        if(board.checkTop5())
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * Saves score given the player name
+     * @param playerName name of the player
+     */
+    public void saveScore(String playerName) {
+        board.saveScore(playerName);
+    }
+
+    /**
+     * Returns top score player list
+     * @return player list
+     */
+    public List<PlayerScore> getScoreList() {
+        return board.getPlayerList();
     }
 }

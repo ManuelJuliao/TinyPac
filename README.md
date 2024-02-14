@@ -1,1 +1,3 @@
-Pacman clone for school project
+##Pacman clone 
+
+Pacman clone done with Java and JavaFX for school project.
